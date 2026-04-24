@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    text-align: center;
+    margin-top: 100px;
+    overflow: hidden; /* prevent scroll */
+}
+
+/* Title */
+h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+input {
+    width: 200px;
+    padding: 10px;
+    margin: 8px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+}
+
+/* Buttons */
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Display box */
+#display {
+    position: relative;
+    z-index: 2; /* keep above symbols */
+    margin: 25px auto;
+    padding: 15px;
+    width: 220px;
+    background-color: #000;
+    color: #ffd700;
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+
+    /* prevent overflow */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Pop animation */
+#display:not(:empty) {
+    animation: pop 0.3s ease;
+    color: #00ffcc;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Floating symbols (JS controls movement) */
+.symbol {
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 26px;
+    color: rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+    z-index: 0;
+
+    /* optional glow */
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}

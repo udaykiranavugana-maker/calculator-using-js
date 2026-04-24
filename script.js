@@ -29,3 +29,49 @@ function Div() {
         document.getElementById("display").innerText = v1 / v2;
     }
 }
+
+
+const symbols = document.querySelectorAll(".symbol");
+
+symbols.forEach(symbol => {
+    let x = Math.random() * window.innerWidth;
+    let y = Math.random() * window.innerHeight;
+
+    // ✅ Ensure speed is NEVER too small
+    let dx = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? -1 : 1);
+    let dy = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? -1 : 1);
+
+    function move() {
+        x += dx;
+        y += dy;
+
+        // ✅ Bounce on edges properly
+        if (x <= 0 || x >= window.innerWidth - 30) {
+            dx *= -1;
+        }
+        if (y <= 0 || y >= window.innerHeight - 30) {
+            dy *= -1;
+        }
+
+        // ✅ Avoid display box area (center safe zone)
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+
+        if (
+            x > centerX - 180 &&
+            x < centerX + 180 &&
+            y > centerY - 120 &&
+            y < centerY + 120
+        ) {
+            dx *= -1;
+            dy *= -1;
+        }
+
+        // ✅ Apply movement
+        symbol.style.transform = `translate(${x}px, ${y}px)`;
+
+        requestAnimationFrame(move);
+    }
+
+    move();
+});
